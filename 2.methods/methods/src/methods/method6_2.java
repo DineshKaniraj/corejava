@@ -6,7 +6,7 @@ public class method6_2
    public static void add(int x, int y)   //instance method with local variable
     {
         System.out.println(x+y);
-        System.out.println(method6_2.x+method6_2.y); //this keyword not allowed in static method
+        //System.out.println(method6_2.x+method6_2.y); //this keyword not allowed in static method
         
     }
    public static void main (String [] args)
