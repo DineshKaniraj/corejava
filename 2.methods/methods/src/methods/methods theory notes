@@ -1,0 +1,486 @@
+Methods:
+    *Its used to write logics.
+    *There are two types
+    1. Instance method
+        *access by using object and memory allocated when object creation.
+    2. Static method
+        *it access by class name and memory allocated while class loading.
+    ex:1
+    void m1()  // Instance method
+    {
+        //sts
+    }
+    ex:2
+    static void m1()  // static method
+    {
+        //sts
+    }
+
+
+        Instance variables & Instance methods
+                        |   
+                        |   
+                        |
+            ---------------------------
+            |                         |
+     (Access directly )         (Access by Object)
+            |                         |
+       Instance area            Static area
+
+
+
+
+        Static variables and Static method
+                      |
+                      |
+            -------------------------
+            |                       |
+        (--Access by using class name--)
+            |                       |
+        Static area           Instance area
+
+    *Method Syntax:
+       
+       - modifiers static return-type method-name(parameters) throws Exception
+            {
+                //sts
+            }
+
+       - modifiers - permission level (public, private, protected)
+       - return type  
+       - method name 
+       - parameters 
+       - method signature - It is nothing but method name and parameters. ex: m1(int a, int b);
+       - three parts of methods:
+                1. method declaration
+                2. method implementation
+                3. method calling
+    ex:3
+       
+       class Test
+       void m1() //method declaration
+        {
+            sts; // method implementation
+        }
+       public static void main(String[] args)
+        {
+            Test t = new Test();   //object creation
+            t.m1();                //method calling by object
+        }
+ex:4
+
+real time project methods like this:
+        
+package methods;
+
+class X1{}
+class Y1{}
+class Emp1{}
+class Student1{}
+public class methods2 
+{
+    void m1(X1 x,Emp1 e)
+    {
+        System.out.println("This is the method1");
+    }
+    static void m2(Y1 y,Student1 s)
+    {
+        System.out.println("This is the method2");
+    }
+    public static void main(String[] args)
+    {
+        methods2 m = new methods2();  //create object for main class
+        X1 x = new X1();   //create object for X1 class
+        Emp1 e = new Emp1();  // create object for Emp1 class
+        m.m1(x,e);     // calling X1 and Emp1 object in the main class object  
+         
+        //(or)
+        
+        m.m1(new X1(), new Emp1());
+        
+        Y1 y = new Y1();
+        Student1 s = new Student1();
+        m.m2(y,s);
+        
+        //(or)
+        
+        m.m2(new Y1(),new Student1 () );
+        
+    }
+    
+}
+
+ex:5
+
+same method signature
+
+1)
+package methods;
+public class Methods3 
+{
+    void m1()
+    {System.out.println("method1");}
+    static void m2()
+    {System.out.println("method2");}
+    public static void main(String[] args)
+    {
+        Methods3 m = new Methods3();
+        m.m1();
+        m.m2();
+    }
+}
+
+2)same method signature is not support on java
+
+package methods;
+public class Methods3_1 
+{
+    void m1()
+    {
+        System.out.println("method1");
+    }
+    void m1()
+    {
+        System.out.println("methodone");
+    }
+    public static void main(String[] args)
+    {
+        Methods3_1 m = new Methods3();
+        m.m1();
+    }
+}
+output:java.lang.RuntimeException: Uncompilable source code - method m1() is already defined in class 
+methods.Methods3_1 at methods.Methods3_1
+
+3)same method but different parameter initialized is accepted in java or different method signature
+ is accepted in java
+
+package methods;
+public class Methods3_1 
+{
+    void m1()
+    {
+        System.out.println("1000");
+    }
+    void m1(int a,int b)
+    {
+        System.out.println(a+b);
+    }
+    public static void main(String[] args)
+    {
+        Methods3_1 m = new Methods3_1();
+        
+        m.m1(100,200);
+        m.m1();
+          
+        
+        
+    }
+}
+4) Inner method is not allowed
+    -but inner class method is supported
+
+5) methods called in another method
+
+    package methods;
+    public class method5 
+    {
+    void m1()                                   //Instance method 
+    {
+        m2();                                  //Instance m2 method calling - instance method and instance area then direct call
+        System.out.println("method 1");
+    }
+    void m2()
+    {
+        System.out.println("method 2");
+        method5.m3(10);                         //static method m3 calling by classname
+    }
+    static void m3(int a)                       //static method m3
+    {
+        System.out.println("method 3");
+    }
+    public static void main (String[] args)
+    {
+        method5 m = new method5();
+        m.m1();
+    }
+    }
+
+6) method with parameters in different variable name when compared to the instance variable
+
+    package methods;
+    public class method6 
+    {
+    int x=100;              //instance variable
+    int y=200;
+    void add(int a, int b)   //instance method with local variable
+    {
+        System.out.println(x+y);
+        System.out.println(a+b);
+        
+    }
+    public static void main (String [] args)
+    {
+        method6 m = new method6();
+        m.add(10,30);
+    }
+    }
+
+    output:
+    300
+    40
+
+6)a) method with parameters in same variable name when compared to the instance variable
+
+        package methods;
+    public class method6_1 
+    {
+    int x=100;              //instance variable
+    int y=200;
+    void add(int x, int y)   //instance method with local variable
+    {
+        System.out.println(x+y);
+        System.out.println(this.x+this.y);
+        
+    }
+    public static void main (String [] args)
+    {
+        method6_1 m = new method6_1();
+        m.add(10,30);
+    }
+    }
+
+    output:
+
+    40
+    300
+
+6)c)method with parameters in same variable name when compared to the instance variable but without this keyword
+
+        package methods;
+        public class method6_1 
+    {
+    int x=100;              //instance variable
+    int y=200;
+    void add(int x, int y)   //instance method with local variable
+    {
+        System.out.println(x+y);
+        System.out.println(x+y);
+        
+    }
+    public static void main (String [] args)
+    {
+        method6_1 m = new method6_1();
+        m.add(10,30);
+    }
+    }
+
+    output:
+    40
+    40
+
+6)d)Inside the static method (this keyword) not allowed
+
+        package methods;
+        public class method6_2 
+    {
+    int x=100;              //instance variable
+    int y=200;
+   public static void add(int x, int y)   //instance method with local variable
+    {
+        System.out.println(x+y);
+        System.out.println(this.x+this.y); //this keyword not allowed in static method
+        
+    }
+   public static void main (String [] args)
+    {
+        method6_2 m = new method6_2();
+        m.add(10,30);
+    }
+    }
+
+output:
+
+    Exception in thread "main" java.lang.RuntimeException: Uncompilable source code - non-static 
+    variable this cannot be referenced from a static context
+
+7) Return type is mandatory in the method and it has return value except void. 
+    void is represents nothing. And for other types there is possible for primitive return value, class type, array etc... 
+    a)void m1()
+        {   
+                statement;  //there is no return value for void return type
+        }
+    b)int m1()
+        {
+               statement;    
+               return 10;
+        }
+   c)int m1()
+        {
+                return 10; //return type above the statement is not valid
+                statement;
+        }
+    d)This is the way to use return value
+    package methods;
+
+    public class Methods7 {
+    int num ()
+    {
+        return 10;
+    }
+
+    public static void main(String[] args)
+    {
+            Methods7 mm = new Methods7();
+          int a=mm.num();
+          if(a==10)
+          {
+              System.out.println("This is the way to use return value"+a);
+          }
+            
+            }
+    
+        }
+
+    e)package methods;
+
+    public class methods7_1 {
+    int m1()
+    {
+        System.out.println("This is method of m1");
+        return 10;
+    }
+    float m2()
+    {
+        System.out.println("this is method of m2");
+        return 10.5f;
+    }
+    static char m3()
+    {
+        System.out.println("This is mthod of m3");
+        return 'a';
+    }
+
+    public methods7_1() {
+    }
+    
+
+    public static void main(String[] args) {
+        methods7_1 mm = new methods7_1();
+        int a=mm.m1();
+        float b=mm.m2();
+        char c=methods7_1.m3();
+        System.out.println(a+b+c);
+    }
+    
+    }
+
+    f)
+    package methods;
+    class Employee {    }
+    class Cricketplayers {  }
+    class bank
+    {
+    void banker(){System.out.println("This is bank class");}
+    }
+
+    public class methods7_2 
+    {
+    Employee m1()                       //this is class-type method then we have to create an object for the employee class
+                                                        //and by the object name we must be return.
+    {  
+        System.out.println("This m1 is class-Type method");
+        Employee ee = new Employee();
+        return ee;
+    }
+    Cricketplayers m2()
+    {
+        System.out.println("This m2 method is class-type method");
+        Cricketplayers cp = new Cricketplayers();
+        return cp;
+    }
+    
+    void m3()
+    {
+        bank b = new bank();
+        b.banker();
+    }
+    public static void main(String[] args)
+    {
+            methods7_2 m = new methods7_2();
+            Employee e=m.m1();
+            System.out.println(e);
+            Cricketplayers cc=m.m2();
+            System.out.println(cc);
+            m.m3();
+    }
+
+    }
+
+    g)
+    package methods;
+
+    public class methods7_3 {
+    methods7_3 m1()
+    {
+        System.out.println("This is same class - type - m1 method");
+        methods7_3 mm = new methods7_3();
+        return mm;
+    }
+    methods7_3 m2()
+    {
+    System.out.println("This is same class -type m2 method . By this keyword we can return directly");
+    return this;              //this is recommended for current class type method.
+    }
+    public static void main(String[] args) {
+       methods7_3 out = new methods7_3();
+       methods7_3 s1=out.m1();
+       methods7_3 s2=out.m2();
+    }
+    
+    }
+
+
+8)return type is by variable
+
+case-1
+
+int a=100;      //instance variable
+int m(int a)    //local variable
+{
+    return a;        //this return a local variable only. 
+}
+
+
+case-2
+
+
+int a=100;
+int m1()
+{
+    return a;   //this return a instance variable because it doesnot contain the local variable parameter.
+}
+
+
+case-3
+
+int a=100;
+int m1(int a)
+{
+    return this.a;  //this return a instance variable because we use this keyword.
+}
+
+These program are in the methods9.
+
+
+
+
+
+
+
+
+
+
+
+
+      
