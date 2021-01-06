@@ -1,0 +1,156 @@
+program is write in package-->class. And class contains variables, methods, constructors, Instance blocks, static blocks.
+class Test
+{
+    1.variables;
+    2.methods;
+    3.constructors;
+    4.Instance blocks;
+    5.static blocks;
+}
+
+variables:
+    Its type may be primitive data type variable, class type variable, enum type variable, array type variable.
+    there are 3 types of variables
+        1.Local variables 
+        2.Instance variables
+        3.Static variables
+A)what is local variables? 
+    1. declared inside the method or constructor or instance blocks or static blocks and those are local variables.
+    2. scope of the variable only inside the method or constructor or blocks not outside.
+    3. memory allocated when methods starts and memory released when method is completed/end.
+    4. variables stored in the stack memory.
+ex:1
+Class Test
+{
+public static void main(String[]args)
+{  //Local variable
+    int a = 10;
+    int b = 10;
+}
+}
+--------------------------------------------------------
+ex:2
+
+void m1()
+{
+    int a=10; //local variable
+    System.out.println(a); //possible
+}
+void m2 ()
+{
+    System.out.println(a);  //not possible. outside is not possible
+}
+--------------------------------------------------------
+ex:3
+
+void m1()//memory allocated when methods starts
+{
+    int a=10;
+    int b=20;
+    //logics here
+} //memory released when method is completed.  
+    
+---------------------------------------------------------
+
+
+B)What is Instance variables?
+    *Before know this we must know two areas. they are Instance area, Static area.
+    *Declared inside the class but outside of the methods.
+    *Scope of the variables ----> Inside the class all methods and constructors and blocks.
+    *memory is allocated when object is created and when object destroyed then memory too destroyed.
+    *It stored in Heap memory
+    ex:1
+    Instance area:
+    void m1()//Instance method
+        {
+           xxxxxxx; //Instance area
+        }
+        
+        ex:2
+    Static area:
+    Static void m2()//Static method
+        {
+           xxxxxxx; //Static area
+        }
+        
+    *
+
+
+
+        Instance variables & Instance methods
+                        |   
+                        |   
+                        |
+            ---------------------------
+            |                         |
+     (Access directly )         (Access by Object)
+            |                         |
+       Instance area            Static area
+
+--------------------------------------------------------------------------------
+C)What is Static variables?
+    * Declared inside the class but outside of the method with static modifier
+    * Scope is within the class/
+    * .Class file loading memory allocate ---------> .Class file unloading then memory destroyed
+    * It is stored in non-heap memory.
+
+    Static variables and Static method
+                |
+                |
+     -------------------------
+     |                       |
+  (--Access by using class name--)
+     |                       |
+  Static area           Instance area
+
+
+
+    ex:1
+    Class Test
+        {
+            Static int a=10;   //static variables
+            Static int b=20;
+        }
+        
+    main example : Variables1.java , Variables2.java
+
+--------------------------------------------------------------------
+
+variables   =   default value
+
+byte        =   0
+short       =   0
+long        =   0
+int         =   0
+float       =   0.0 
+double      =   0.0
+char        =   single space
+boolean     =   false
+string      =   null
+
+--------------------------------------------------------------------
+
+Class definition: 1. It is logical entity and contains logics of the application.
+                  2. Class is the blue print. It decides the object creation.
+                  3. by single blue print we can create multiple objects.
+                  4. to create class we have to use "class" keyword and calling object using "new" keyword.
+
+Object definition: It is physical entity representing memory.
+
+
+-----------------------------------------------------------------------------------------------------------
+
+Property               -        Local              -              Instance               -        Static
+1.where declared       -  method/cons/-/blocks     - inside the class outside the method -  inside the class outside the method with static keyword
+2.scope of variable    -  methods/blocks/cons/-    - within the class                    -  within the class
+3.when memory allocate -  when method starts       - when object created memory allocate -  .class file loading
+4.when memory destroy  -  when method destroyed    - after destroy object memory too destroy- .class file destroy
+5.Initial values       -     --------------        - 
+6.how to access        -  directly access variable - instance variable access by object  - static variable can access by directly/class name/object
+7.relation of object   -     ---------------       - every object creation memory allocate- any no of object but only one single copy created. 
+8.stored memory        -  stack memory             - heap memory                          - non-heap memory
+
+
+------------------------------------------------------------------------------------------------------------
+
+

@@ -1,0 +1,20 @@
+what is class?
+    we dicuss it later.
+    It contains variables, methods, constructors, instance blocks, static blocks
+    ex:
+        class Test
+{
+            variables;
+            method;
+            constructors;
+            instance blocks;
+            static blocks;
+}
+
+1. what is variables?
+    - It is used to store the values. it may be primitive data type, object data type, enum data type, array data type
+    - types: 
+        1. Local variables
+        2.instance variables
+        3. Static variables
+
